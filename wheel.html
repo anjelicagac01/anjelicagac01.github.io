@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<script>
+var looper;
+var degrees = 0;
+function rotateAnimation(el,speed){
+	var elem = document.getElementById(el);
+	if(navigator.userAgent.match("Chrome")){
+		elem.style.WebkitTransform = "rotate("+degrees+"deg)";
+	} else if(navigator.userAgent.match("Firefox")){
+		elem.style.MozTransform = "rotate("+degrees+"deg)";
+	} else if(navigator.userAgent.match("MSIE")){
+		elem.style.msTransform = "rotate("+degrees+"deg)";
+	} else if(navigator.userAgent.match("Opera")){
+		elem.style.OTransform = "rotate("+degrees+"deg)";
+	} else {
+		elem.style.transform = "rotate("+degrees+"deg)";
+	}
+	looper = setTimeout('rotateAnimation(\''+el+'\','+speed+')',speed, 3);
+	degrees++;
+	if(degrees > 359){
+		degrees = 1;
+	}
+	document.getElementById("status").innerHTML = "rotate("+degrees+"deg)";
+}
+function myStopFunction(){
+	clearTimeout(looper);
+}
+</script>
+		<title><center>Spin the Decision</center>
+
+		</title>
+	</head>
+	<body>
+		<button onclick= "rotateAnimation()">Spin!</button>
+		<h1> Sp=in the Decision </h1>
+		<img id = wheel src="http://www.janetsebastian.com/spinwheel/spinwheel.png" />
+		<script>rotateAnimation("wheel",2);</script>
+		<p style="font-family: serif"> Welcome. </p>
+		<p style="font family: century"> I live in Cook. </p>
+		<style>
+body {background-color:lightblue;}
+	</style>	
+		
+	</body>
+</html>
